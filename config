@@ -156,6 +156,7 @@ bar {
 # Create Log out, Reboot, Poweroff bindings
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#***NO FUNCIONA PERFECTAMENTE
 mode "Exit (mod+L)ogout, (l)ock, (R)eboot, (P)oweroff"{
         bindsym $mod+r exec systemctl reboot
         bindsym $mod+l exit
@@ -181,10 +182,12 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 #xinput -list | grep key
 #setxkbmap -device 8 -layout es
 
+#configura posicion de cada monitor
 exec --no-startup-id xrandr --output VGA-1 --mode 1600x900 --right-of DVI-I-1
 #fake-outputs 3200x1800+0+0
 
 #
+#configs para 2da pantalla workspaces 1-5 en un monitor y resto en otro
 workspace 1 output VGA-1
 workspace 2 output VGA-1
 workspace 3 output VGA-1
