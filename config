@@ -93,28 +93,56 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
+bindsym $mod+grave workspace 0 Web
+bindsym $mod+1 workspace 1 Code
+bindsym $mod+2 workspace 2 Code
+bindsym $mod+3 workspace 3 Nautilus
+bindsym $mod+4 workspace 4 Misc
+bindsym $mod+5 workspace 5 Misc
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+8 workspace 8 Git
+bindsym $mod+9 workspace 9 Compilation
+bindsym $mod+0 workspace 10 Code
+bindsym $mod+minus workspace 11 Pidgin
+bindsym $mod+equal workspace 12 Music
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+grave move container to workspace 0 Web
+bindsym $mod+Shift+1 move container to workspace 1 Code
+bindsym $mod+Shift+2 move container to workspace 2 Code
+bindsym $mod+Shift+3 move container to workspace 3 Nautilus
+bindsym $mod+Shift+4 move container to workspace 4 Misc
+bindsym $mod+Shift+5 move container to workspace 5 Misc
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+8 move container to workspace 8 Git
+bindsym $mod+Shift+9 move container to workspace 9 Compilation
+bindsym $mod+Shift+0 move container to workspace 10 Code
+bindsym $mod+Shift+minus move container to workspace 11 Pidgin
+bindsym $mod+Shift+equal move container to workspace 12 Music
+
+#configs para 2da pantalla workspaces 1-5 en un monitor y resto en otro
+workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+workspace 0 output DVI-I-1
+workspace 6 output VGA-1
+workspace 7 output VGA-1
+workspace 8 output VGA-1
+workspace 9 output VGA-1
+workspace 10 output VGA-1
+workspace 11 output VGA-1
+workspace 12 output VGA-1
+
+#start applicacions on startup
+assign [class="Firefox"] 0 Web
+assign [class="Pidgin"] 11 Pidgin
+assign [class="Rhythmbox"] 12 Music
+assign [class="Nautilus"] 3 Nautilus
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -160,7 +188,7 @@ bar {
 mode "Exit (mod+L)ogout, (l)ock, (R)eboot, (P)oweroff"{
         bindsym $mod+r exec systemctl reboot
         bindsym $mod+l exit
-        bindsym l exec i3lock 
+        bindsym l exec i3lock -c 000000
         bindsym $mod+p exec systemctl poweroff
 
         # back to normal: Enter or Escape
@@ -180,21 +208,13 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 
 #doble teclado uno con es layout
 #xinput -list | grep key
-#setxkbmap -device 8 -layout es
+#setxkbmap -device 11 -layout es
+#setxkbmap -device 11 -layout us
 
 #configura posicion de cada monitor
 exec --no-startup-id xrandr --output VGA-1 --mode 1600x900 --right-of DVI-I-1
 #fake-outputs 3200x1800+0+0
 
+#la magia de repetir tecla de workspace para volver
+workspace_auto_back_and_forth yes
 #
-#configs para 2da pantalla workspaces 1-5 en un monitor y resto en otro
-workspace 1 output VGA-1
-workspace 2 output VGA-1
-workspace 3 output VGA-1
-workspace 4 output VGA-1
-workspace 5 output VGA-1
-workspace 6 output DVI-I-1
-workspace 7 output DVI-I-1
-workspace 8 output DVI-I-1
-workspace 9 output DVI-I-1
-workspace 10 output DVI-I-1
