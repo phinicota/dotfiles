@@ -208,7 +208,7 @@ exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,gpg,secret
 #para manejar vol desde teclado
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
 
 #doble teclado uno con es layout
 #xinput -list | grep key
