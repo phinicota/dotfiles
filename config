@@ -140,6 +140,7 @@ workspace 12 output VGA-1
 
 #start applicacions on startup
 assign [class="Firefox"] 0 Web
+assign [class="google-chrome"] 7
 assign [class="Pidgin"] 11 Pidgin
 assign [class="Rhythmbox"] 12 Music
 assign [class="Nautilus"] 3 Nautilus
