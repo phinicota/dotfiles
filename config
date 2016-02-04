@@ -187,10 +187,9 @@ bar {
 # Create Log out, Reboot, Poweroff bindings
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-#***NO FUNCIONA PERFECTAMENTE
 mode "Exit (L)ogout, (l)ock, (s)uspend, (r)eboot, (p)oweroff"{
         bindsym r exec systemctl reboot
-        bindsym L exit
+        bindsym $mod+L exit
         bindsym s exec --no-startup-id i3exit suspend, mode "default"
         bindsym l exec i3lock -c 000000
         bindsym p exec systemctl poweroff
