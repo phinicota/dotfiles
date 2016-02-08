@@ -209,6 +209,14 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
 
+#  to update the i3status after changing the volume : killall -USR1 i3status
+# bindsym F11 exec amixer -q sset Master 5%+ unmute && killall -USR1 i3status
+# bindsym F10 exec amixer -q sset Master 5%- unmute && killall -USR1 i3status
+# bindsym F12 exec amixer -q sset Master toggle && killall -USR1 i3status
+bindsym F11 exec amixer -q -D pulse set Master 5%+ unmute && killall -USR1 i3status
+bindsym F10 exec amixer -q -D pulse set Master 5%- unmute && killall -USR1 i3status
+bindsym F12 exec amixer -q -D pulse set Master toggle && killall -USR1 i3status
+
 #doble teclado uno con es layout
 #xinput -list | grep key
 #setxkbmap -device 11 -layout es
