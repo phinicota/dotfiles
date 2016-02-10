@@ -217,6 +217,12 @@ bindsym F11 exec amixer -q -D pulse set Master 5%+ unmute && killall -USR1 i3sta
 bindsym F10 exec amixer -q -D pulse set Master 5%- unmute && killall -USR1 i3status
 bindsym F12 exec amixer -q -D pulse set Master toggle && killall -USR1 i3status
 
+# spotify controls
+# needs https://github.com/mgarratt/spotify-control installed
+bindsym F5 exec spotify-control play && killall -USR1 i3status
+bindsym F6 exec spotify-control prev && killall -USR1 i3status
+bindsym F7 exec spotify-control next && killall -USR1 i3status
+
 #doble teclado uno con es layout
 #xinput -list | grep key
 #setxkbmap -device 11 -layout es
