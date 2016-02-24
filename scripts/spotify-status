@@ -1,0 +1,6 @@
+status=`spotify-control getStatus`
+artist=`spotify-control getArtist`
+album=`spotify-control getAlbum`
+title=`spotify-control getTitle`
+
+echo "${status} - ${title} (${album}) / ${artist} "
