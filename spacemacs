@@ -23,13 +23,16 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     spacemacs-helm
      (auto-completion :variables
-                      auto-completion-complete-with-key-sequence-delay 0.1)
+                      auto-completion-complete-with-key-sequence-delay 0.04)
      ;; better-defaults
      emacs-lisp
      c-c++
+     semantic
      spotify
      git
+     ;; extra-langs
      ;; markdown
      ;; org
      (shell :variables
@@ -172,7 +175,7 @@ values."
    dotspacemacs-enable-paste-micro-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.1
+   dotspacemacs-which-key-delay 0.05
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -241,6 +244,7 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -248,8 +252,19 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
+  (defconst invap
+    '("bsd"
+      (c-basic-offset . 4)
+      (c-offsets-alist . ((innamespace . [0])))))
+  (c-add-style "invap" invap)
+
+  (defun my-c-setup ()
+    (c-set-style "invap")
+    (message "hooked dawg!"))
+  (add-hook 'c++-mode-hook 'my-c-setup)
+
   ;; save after leaving insert mode
-  ; the function
+  ;; the function
   (defun my-save-if-bufferfilename ()
     (if (buffer-file-name)
         (progn
