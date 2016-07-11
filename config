@@ -125,19 +125,19 @@ bindsym $mod+Shift+minus move container to workspace 11 Pidgin
 bindsym $mod+Shift+equal move container to workspace 12 Music
 
 #configs para 2da pantalla workspaces 1-5 en un monitor y resto en otro
-workspace 1 output DVI-I-1
-workspace 2 output DVI-I-1
-workspace 3 output DVI-I-1
-workspace 4 output DVI-I-1
-workspace 5 output DVI-I-1
-workspace 0 output DVI-I-1
-workspace 6 output VGA-1
-workspace 7 output VGA-1
-workspace 8 output VGA-1
-workspace 9 output VGA-1
-workspace 10 output VGA-1
-workspace 11 output VGA-1
-workspace 12 output VGA-1
+workspace 1 output VGA-1
+workspace 2 output VGA-1
+workspace 3 output VGA-1
+workspace 4 output VGA-1
+workspace 5 output VGA-1
+workspace 0 output VGA-1
+workspace 6 output DVI-I-1
+workspace 7 output DVI-I-1
+workspace 8 output DVI-I-1
+workspace 9 output DVI-I-1
+workspace 10 output DVI-I-1
+workspace 11 output DVI-I-1
+workspace 12 output DVI-I-1
 
 #start applicacions on startup
 assign [class="Firefox"] 0 Web
@@ -181,9 +181,10 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command barr
-        # status_command i3status
+        # status_command barr // with spotify song
+        status_command i3status
         position top
+        tray_output VGA-1 # tray icons on left display
 }
 
 # Create Log out, Reboot, Poweroff bindings
@@ -191,9 +192,9 @@ bar {
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 mode "Exit (L)ogout, (l)ock, (s)uspend, (r)eboot, (p)oweroff"{
         bindsym r exec systemctl reboot
-        bindsym $mod+l i3-msg exit
-        bindsym s exec --no-startup-id i3exit suspend, mode "default"
-        bindsym l exec i3lock -c 000000
+        bindsym $mod+L i3-msg exit
+        bindsym s exec gksu pm-suspend && i3lock -c 000000; mode "default"
+        bindsym l exec i3lock -c 000000; mode "default"
         bindsym p exec systemctl poweroff
 
         # back to normal: Enter or Escape
@@ -205,7 +206,7 @@ bindsym $mod+Shift+e mode "Exit (L)ogout, (l)ock, (s)uspend, (r)eboot, (p)owerof
 
 #para evitar warning gnome-keyring cuando git clone
 # ubuntu 12.04?
-#exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,gpg,secrets
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,gpg,secrets
 
 #para manejar vol desde teclado
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
@@ -222,7 +223,7 @@ bindsym F12 exec amixer -q -D pulse set Master toggle && killall -USR1 i3status
 
 # spotify controls
 # needs https://github.com/mgarratt/spotify-control installed
-bindsym F5 exec spotify-control play && killall -USR1 i3status
+bindsym F8 exec spotify-control play && killall -USR1 i3status
 bindsym F6 exec spotify-control prev && killall -USR1 i3status
 bindsym F7 exec spotify-control next && killall -USR1 i3status
 
@@ -232,8 +233,14 @@ bindsym F7 exec spotify-control next && killall -USR1 i3status
 #setxkbmap -device 11 -layout us
 
 #configura posicion de cada monitor
-exec --no-startup-id xrandr --output VGA-1 --mode 1600x900 --right-of DVI-I-1
-#fake-outputs 3200x1800+0+0
+exec --no-startup-id xrandr --output VGA-1 --mode 1920x1080
+exec --no-startup-id xrandr --output DVI-I-1 --right-of VGA-1 --mode 1600x900
+exec --no-startup-id xrandr --output VGA-1 --right-of DVI-I-1
+# exec --no-startup-id xrandr --output VGA-1 --right-of DVI-I-1 --mode 1920x1080
+# exec --no-startup-id dual-screen
+# fake-outputs 3200x1800+0+0
+# fake-outputs 3920x1080+0+0
+# fake-outputs 3520x1080+0+0
 
 #la magia de repetir tecla de workspace para volver
 workspace_auto_back_and_forth yes
@@ -245,4 +252,4 @@ bindsym Print exec scrot -e 'mv $f /tmp/ && gimp /tmp/$f'
 bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
 
 # no titlebars
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
