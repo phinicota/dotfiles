@@ -44,6 +44,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec "light -A 5 && $refresh_i3status"
 bindsym XF86MonBrightnessDown exec "light -U 5 && $refresh_i3status"
 
+bindsym Print exec --no-startup-id export filename=~/screenshots/$(%Y-%m-%d-%T-screenshot).png && shutter --output=${filename} --exit_after_capture  --select && xclip -selection clipboard -target image/png ${filename}
+bindsym $mod+Print exec --no-startup-id export filename=~/screenshots/$(%Y-%m-%d-%T-screenshot).png && shutter --output=${filename} --exit_after_capture --select && pinta ${filename}
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
