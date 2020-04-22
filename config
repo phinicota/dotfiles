@@ -29,6 +29,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets,ssh,pcks11
+exec_always --no-startup-id "killall dunst; dunst -config ~/.config/i3/dunstrc" # TODO: might need 2 restarts to work
+exec_always --no-startup-id feh --randomize --bg-max ~/Wallpapers/*
 exec --no-startup-id flatpak run org.telegram.desktop
 exec --no-startup-id firefox
 exec --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
