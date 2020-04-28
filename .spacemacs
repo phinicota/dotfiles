@@ -58,9 +58,9 @@ values."
      c-c++
      octave
      (python :variables
-             python-enable-yapf-format-on-save t
              python-test-runner 'pytest
-             python-sort-imports-on-save t)
+             python-sort-imports-on-save t
+             python-enable-yapf-format-on-save t)
      go
      haskell
      latex
@@ -150,7 +150,7 @@ values."
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    ;; dotspacemacs-default-font '("Source Code Pro"
    dotspacemacs-default-font '("Monospace"
-                               :size 16
+                               :size 20
                                :weight normal
                                :width normal
                                :powerline-scale 1.5)
